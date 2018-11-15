@@ -1,6 +1,6 @@
 # mock
 
-GrEAt HAskeLL SCriPt to trANsForm tEXT inTo mockinG cASe
+![wAR miR jEtzT Zu anSTRENgEnd dA JedeN ZWEiten BUChSTaBeN GRoSS zU scHREiBen](mock.png)
 
 ```
 $> ghci Mock.hs
