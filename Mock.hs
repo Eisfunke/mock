@@ -18,3 +18,9 @@ mockRandom :: String -> IO String
 mockRandom str = do
     time <- fmap round getPOSIXTime
     return $ toUpperBy str $ randoms $ mkStdGen time
+
+putMockAlternate :: String -> IO ()
+putMockAlternate = putStrLn . mockAlternate
+
+putMockRandom :: String -> IO ()
+putMockRandom str = mockRandom str >>= putStrLn

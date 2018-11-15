@@ -3,9 +3,9 @@
 GrEAt HAskeLL SCriPt to trANsForm tEXT inTo mockinG cASe
 
 ```
-ghci> mockRandom "Ich mag Kääääsebrot" >>= putStrLn
+ghci> putMockRandom "Ich mag Kääääsebrot"
 IcH mAg KÄääÄSEBroT
-ghci> putStrLn $ mockAlternate "Ich mag Kääääsebrot"
+ghci> putMockAlternate "Ich mag Kääääsebrot"
 ICh mAg KÄäÄäSeBrOt
 ```
 
