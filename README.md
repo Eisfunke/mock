@@ -3,6 +3,7 @@
 GrEAt HAskeLL SCriPt to trANsForm tEXT inTo mockinG cASe
 
 ```
+$> ghci Mock.hs
 ghci> putMockRandom "Ich mag Kääääsebrot"
 IcH mAg KÄääÄSEBroT
 ghci> putMockAlternate "Ich mag Kääääsebrot"
