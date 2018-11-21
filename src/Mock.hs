@@ -1,9 +1,10 @@
-module Mock (mockAlternate, mockRandom) where
+module Mock (mockAlternate, mockRandom, mockSpace) where
 
 import Data.Char
 import Data.List
 import System.Random
 import Data.Time.Clock.POSIX
+
 
 toUpperBy :: String -> [Bool] -> String
 toUpperBy (c:cs) (True:bs) = toUpper c : toUpperBy cs bs
@@ -19,20 +20,5 @@ mockRandom str = do
     time <- fmap round getPOSIXTime
     return $ toUpperBy str $ randoms $ mkStdGen time
 
-putMockAlternate :: String -> IO ()
-putMockAlternate = putStrLn . mockAlternate
-
-putMockRandom :: String -> IO ()
-putMockRandom str = mockRandom str >>= putStrLn
-
-main :: IO ()
-main = do
-    args <- getArgs
-    case length args of
-        0 -> putStrLn ""
-
-
-help :: String
-help = "Mock - a program to transform text.\n\
-       \Usage: mock [STYLE] [TEXT]\n\
-       \Styles:"
+mockSpace :: Int -> String -> String
+mockSpace n = intercalate (replicate n ' ') . map (\c -> [c])
