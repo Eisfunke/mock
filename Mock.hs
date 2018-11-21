@@ -24,3 +24,15 @@ putMockAlternate = putStrLn . mockAlternate
 
 putMockRandom :: String -> IO ()
 putMockRandom str = mockRandom str >>= putStrLn
+
+main :: IO ()
+main = do
+    args <- getArgs
+    case length args of
+        0 -> putStrLn ""
+
+
+help :: String
+help = "Mock - a program to transform text.\n\
+       \Usage: mock [STYLE] [TEXT]\n\
+       \Styles:"
