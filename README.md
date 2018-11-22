@@ -18,7 +18,7 @@ There is also an [AUR package](https://aur.archlinux.org/packages/haskell-mock/)
 
 `mock [STYLE] [TEXT]`
 
-You can get a list of possible mock styles with `stack exec -- mock`.
+You can get a list of possible mock styles with `mock`.
 
 If no text is given, input is read from `stdin`.
 
