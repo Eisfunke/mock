@@ -12,18 +12,18 @@ main = do
     args <- getArgs
     case length args of
         0 -> putStrLn help
-        1 -> putStrLn help
+        1 -> putStrLn help  -- TODO: read from stdin
         _ -> handle args
 
 handle :: [String] -> IO ()
-handle (mode:text) = transform (intercalate " " text) >>= putStrLn where
+handle (style:text) = transform (intercalate " " text) >>= putStrLn where
     transform :: String -> IO String
-    transform = case lookup mode modes of
+    transform = case lookup style styles of
         Just f -> f
         Nothing -> const $ return help
 
-modes :: [(String, String -> IO String)]
-modes = [
+styles :: [(String, String -> IO String)]
+styles = [
     ("random", mockRandom),
     ("alternate", toIO mockAlternate),
     ("space", toIO $ mockSpace 1),
@@ -39,4 +39,4 @@ toIO f = (\x -> return $ f x)
 help :: String
 help = "Mock - a program to transform text.\n\n\
        \Usage: mock [STYLE] [TEXT]\n\
-       \Styles: " ++ (intercalate ", " $ map fst modes)
+       \Styles: " ++ (intercalate ", " $ map fst styles)
