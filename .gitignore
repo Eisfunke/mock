@@ -10,8 +10,6 @@ cabal-dev
 *.dyn_hi
 .hpc
 .hsenv
-# cabal file is auto-generated through Stack
-*.cabal
 .cabal-sandbox/
 cabal.sandbox.config
 *.prof
