@@ -29,7 +29,7 @@ library:
   - time
 
 executables:
-  mock-exe:
+  mock:
     main:                Main.hs
     source-dirs:         app
     ghc-options:

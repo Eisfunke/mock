@@ -4,12 +4,12 @@
 
 ```
 $> stack build
-$> stack exec -- mock-exe random This is a great program.
+$> stack exec -- mock random This is a great program.
 ThIs Is A greaT PROgrAM.
-$> stack exec -- mock-exe space This is a great program.
+$> stack exec -- mock space This is a great program.
 T h i s   i s   a   g r e a t   p r o g r a m.
 ```
 
-You can get a list of possible mock styles with `stack exec -- mock-exe`.
+You can get a list of possible mock styles with `stack exec -- mock`.
 
 [![WTFPL-Badge](wtfpl.png)](http://www.wtfpl.net)
