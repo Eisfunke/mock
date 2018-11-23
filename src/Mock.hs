@@ -1,4 +1,4 @@
-module Mock (mockAlternate, mockRandom, letterspace) where
+module Mock (mockAlternate, mockRandom, letterspace, toDS) where
 
 import Data.Char
 import Data.List
@@ -26,3 +26,17 @@ mockRandom str = do
 -- |Letterspaces a String with the given number of blanks between the Chars.
 letterspace :: Int -> String -> String
 letterspace n = intercalate (replicate n ' ') . map (\c -> [c])
+
+toDS :: Char -> Char
+toDS 'C' = chr 8450
+toDS 'H' = chr 8461
+toDS 'N' = chr 8469
+toDS 'P' = chr 8473
+toDS 'Q' = chr 8474
+toDS 'R' = chr 8477
+toDS 'Z' = chr 8484
+toDS c
+    | 48 <= ord c && ord c <= 57 =  chr $ ord c - 48 + 120792  -- Number
+    | 65 <= ord c && ord c <= 90 =  chr $ ord c - 65 + 120120  -- Uppercase letter
+    | 97 <= ord c && ord c <= 122 = chr $ ord c - 97 + 120146  -- Lowercase letter
+toDS c = c

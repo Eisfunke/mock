@@ -34,7 +34,8 @@ styles = [
     ("space2", toIO $ letterspace 2),
     ("space3", toIO $ letterspace 3),
     ("upper", toIO $ map toUpper),
-    ("lower", toIO $ map toLower)]
+    ("lower", toIO $ map toLower),
+    ("double", toIO $ map toDS)]
 
 -- |Lifts a simple function into an IO operation simply returning what the function would return.
 toIO :: (a -> b) -> (a -> IO b)
