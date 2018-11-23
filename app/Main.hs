@@ -10,9 +10,10 @@ import System.Environment
 main :: IO ()
 main = do
     args <- getArgs
-    case length args of
-        0 -> putStrLn help
-        1 -> getLine >>= (\text -> handle [head args, text])
+    case args of
+        [] -> putStrLn help
+        ["--help"] -> putStrLn help
+        [_] -> getContents >>= (\text -> handle [head args, text])
         _ -> handle args
 
 handle :: [String] -> IO ()
