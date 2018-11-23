@@ -30,9 +30,9 @@ styles :: [(String, String -> IO String)]
 styles = [
     ("random", mockRandom),
     ("alternate", toIO mockAlternate),
-    ("space", toIO $ mockSpace 1),
-    ("space2", toIO $ mockSpace 2),
-    ("space3", toIO $ mockSpace 3),
+    ("space", toIO $ letterspace 1),
+    ("space2", toIO $ letterspace 2),
+    ("space3", toIO $ letterspace 3),
     ("upper", toIO $ map toUpper),
     ("lower", toIO $ map toLower)]
 

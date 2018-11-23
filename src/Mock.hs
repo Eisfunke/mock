@@ -1,4 +1,4 @@
-module Mock (mockAlternate, mockRandom, mockSpace) where
+module Mock (mockAlternate, mockRandom, letterspace) where
 
 import Data.Char
 import Data.List
@@ -24,5 +24,5 @@ mockRandom str = do
     return $ toUpperBy str $ randoms $ mkStdGen time
 
 -- |Letterspaces a String with the given number of blanks between the Chars.
-mockSpace :: Int -> String -> String
-mockSpace n = intercalate (replicate n ' ') . map (\c -> [c])
+letterspace :: Int -> String -> String
+letterspace n = intercalate (replicate n ' ') . map (\c -> [c])
