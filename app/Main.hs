@@ -19,7 +19,7 @@ main = do
 
 -- |Returns an IO action handling the given list of arguments.
 handle :: [String] -> IO ()
-handle (style:text) = transform (intercalate " " text) >>= putStrLn where
+handle (style:text) = transform (dropWhileEnd isSpace (intercalate " " text)) >>= putStrLn where
     transform :: String -> IO String
     transform = case lookup style styles of  -- Lookup style name in styles list
         Just f -> f  -- Use the found style function
