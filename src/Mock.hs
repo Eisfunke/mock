@@ -1,10 +1,26 @@
-module Mock (mockAlternate, mockRandom, letterspace, toDS) where
+module Mock (styles, mockAlternate, mockRandom, letterspace, toDS) where
 
 import Data.Char
 import Data.List
 import System.Random
 import Data.Time.Clock.POSIX
 
+
+-- |List of possible mock style names and their functions.
+styles :: [(String, String -> IO String)]
+styles = [
+    ("random", mockRandom),
+    ("alternate", toIO mockAlternate),
+    ("space", toIO $ letterspace 1),
+    ("space2", toIO $ letterspace 2),
+    ("space3", toIO $ letterspace 3),
+    ("upper", toIO $ map toUpper),
+    ("lower", toIO $ map toLower),
+    ("double", toIO $ map toDS)]
+
+-- |Lifts a simple function into an IO operation simply returning what the function would return.
+toIO :: (a -> b) -> (a -> IO b)
+toIO f = \x -> return $ f x
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.
 toUpperBy :: String -> [Bool] -> String
@@ -27,6 +43,7 @@ mockRandom str = do
 letterspace :: Int -> String -> String
 letterspace n = intercalate (replicate n ' ') . map (\c -> [c])
 
+-- |Transforms a character into its double-struck variant (if it is alphanumeric).
 toDS :: Char -> Char
 toDS 'C' = chr 8450
 toDS 'H' = chr 8461
