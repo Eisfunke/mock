@@ -43,7 +43,7 @@ mockRandom str = do
 letterspace :: Int -> String -> String
 letterspace n = intercalate (replicate n ' ') . map (\c -> [c])
 
--- |Transforms a character into its double-struck variant (if it is alphanumeric).
+-- |Transforms a character into its double-struck variant (if it is alphanumeric, else it is left unchanged).
 toDS :: Char -> Char
 toDS 'C' = chr 8450
 toDS 'H' = chr 8461
