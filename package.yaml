@@ -1,5 +1,5 @@
 name:                mock
-version:             2.0.0
+version:             3.0.0
 license:             WTFPL
 git:                 "https://git.eisfunke.com/software/mock"
 author:              "Nicolas Lenz"
@@ -17,7 +17,6 @@ dependencies:
 - base >= 4.7 && < 5
 - random
 - hashable
-- time
 - text
 
 library:
