@@ -2,25 +2,22 @@ module Mock (styles, mockAlternate, mockRandom, letterspace, toDS) where
 
 import Data.Char
 import Data.List
+import Data.Hashable
 import System.Random
-import Data.Time.Clock.POSIX
 
 
 -- |List of possible mock style names and their functions.
-styles :: [(String, String -> IO String)]
+styles :: [(String, String -> String)]
 styles = [
     ("random", mockRandom),
-    ("alternate", toIO mockAlternate),
-    ("space", toIO $ letterspace 1),
-    ("space2", toIO $ letterspace 2),
-    ("space3", toIO $ letterspace 3),
-    ("upper", toIO $ map toUpper),
-    ("lower", toIO $ map toLower),
-    ("double", toIO $ map toDS)]
-
--- |Lifts a simple function into an IO operation simply returning what the function would return.
-toIO :: (a -> b) -> (a -> IO b)
-toIO f = \x -> return $ f x
+    ("alternate", mockAlternate),
+    ("space", letterspace 1),
+    ("space2", letterspace 2),
+    ("space3", letterspace 3),
+    ("lines", intersperse '\n'),
+    ("upper", map toUpper),
+    ("lower", map toLower),
+    ("double", map toDS)]
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.
 toUpperBy :: String -> [Bool] -> String
@@ -33,11 +30,9 @@ toUpperBy [] _ = []
 mockAlternate :: String -> String
 mockAlternate str = toUpperBy str $ intersperse True $ repeat False
 
--- |Tansforms random Chars of a String into uppercase.
-mockRandom :: String -> IO String
-mockRandom str = do
-    time <- fmap round getPOSIXTime
-    return $ toUpperBy str $ randoms $ mkStdGen time
+-- |Tansforms random (that is, random per input String) Chars of a String into uppercase.
+mockRandom :: String -> String
+mockRandom str = toUpperBy str (randoms $ mkStdGen (hash str))
 
 -- |Letterspaces a String with the given number of blanks between the Chars.
 letterspace :: Int -> String -> String

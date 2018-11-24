@@ -16,7 +16,9 @@ description:         Please see the README at <https://git.eisfunke.com/software
 dependencies:
 - base >= 4.7 && < 5
 - random
+- hashable
 - time
+- text
 
 library:
   source-dirs: src

@@ -14,16 +14,14 @@ main = do
     case args of
         [] -> putStrLn help
         ["--help"] -> putStrLn help
-        [style] -> getContents >>= (\input -> handle [style, input])  -- Read from stdin
-        _ -> handle args
+        [style] -> do
+            input <- getContents -- Read from stdin
+            putStrLn $ handle style [input]
+        (style:text) -> putStrLn $ handle style text
 
 -- |Returns an IO action handling the given list of arguments.
-handle :: [String] -> IO ()
-handle (style:text) = transform (dropWhileEnd isSpace (intercalate " " text)) >>= putStrLn where
-    transform :: String -> IO String
-    transform = case lookup style styles of  -- Lookup style name in styles list
-        Just f -> f  -- Use the found style function
-        Nothing -> const $ return help  -- If the style isn't found, always return just the help string
+handle :: String -> [String] -> String
+handle style = fromMaybe (const help) (lookup style styles) . dropWhileEnd isSpace . intercalate " "
 
 -- |Help string.
 help :: String
