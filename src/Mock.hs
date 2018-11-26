@@ -18,8 +18,8 @@ styles = [
     ("space2", letterspace 2),
     ("space3", letterspace 3),
     ("lines", T.intersperse '\n'),
-    ("upper", T.map toUpper),
-    ("lower", T.map toLower),
+    ("upper", T.toUpper),
+    ("lower", T.toLower),
     ("double", T.map toDouble),
     ("cc", mockCC)]
 
