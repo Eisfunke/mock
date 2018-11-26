@@ -4,7 +4,7 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 17611a7df00c9bd277a9091735ad4a0705598afdc3db7b64ac5852af2f642fa8
+-- hash: cc61a2ec4483abb568ec0d6c64b949ecd8f2e1c8a1043eb0fe598f5764d575e5
 
 name:           mock
 version:        3.0.0
@@ -36,7 +36,6 @@ library
     , hashable
     , random
     , text
-    , time
   default-language: Haskell2010
 
 executable mock
@@ -52,5 +51,4 @@ executable mock
     , mock
     , random
     , text
-    , time
   default-language: Haskell2010

@@ -20,7 +20,8 @@ styles = [
     ("lines", T.intersperse '\n'),
     ("upper", T.map toUpper),
     ("lower", T.map toLower),
-    ("double", T.map toDouble)]
+    ("double", T.map toDouble),
+    ("cc", mockCC)]
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.
 toUpperBy :: [Bool] -> T.Text -> T.Text
@@ -55,3 +56,7 @@ toDouble c
     | 65 <= ord c && ord c <= 90 =  chr $ ord c - 65 + 120120  -- Uppercase letter
     | 97 <= ord c && ord c <= 122 = chr $ ord c - 97 + 120146  -- Lowercase letter
 toDouble c = c
+
+-- |Replaces all occurences of lowercase "ck" and "k" in a string with "cc"s.
+mockCC :: T.Text -> T.Text
+mockCC = T.replace "k" "cc" . T.replace "ck" "cc"
