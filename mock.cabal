@@ -4,10 +4,10 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ec9b95839c1659b10e94e8e7a06f9cf42995aee18e1233fc5b873f59e3b122a4
+-- hash: dbb50addd67df50c61803bb90560fb8c48300322a58da40dccf6f166926e29ab
 
 name:           mock
-version:        3.1.0
+version:        3.2.0
 synopsis:       GrEAt HAskeLL PrOGRaM to trANsForm tEXT
 description:    Please see the README at <https://git.eisfunke.com/software/mock#readme>
 category:       String
