@@ -2,15 +2,16 @@
 
 module Mock (styles, mockAlternate, mockRandom, letterspace, toDouble) where
 
+import qualified Data.Text as T
+import Data.Text (Text)
 import Data.Char
 import Data.List
-import qualified Data.Text as T
 import Data.Hashable
 import System.Random
 
 
 -- |List of possible mock style names and their functions.
-styles :: [(T.Text, T.Text -> T.Text)]
+styles :: [(Text, Text -> Text)]
 styles = [
     ("random", mockRandom),
     ("alternate", mockAlternate),
@@ -21,7 +22,8 @@ styles = [
     ("upper", T.toUpper),
     ("lower", T.toLower),
     ("double", T.map toDouble),
-    ("cc", mockCC)]
+    ("cc", mockCC),
+    ("b", mockB)]
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.
 toUpperBy :: [Bool] -> T.Text -> T.Text
@@ -60,3 +62,7 @@ toDouble c = c
 -- |Replaces all occurences of lowercase "ck" and "k" in a string with "cc"s.
 mockCC :: T.Text -> T.Text
 mockCC = T.replace "k" "cc" . T.replace "ck" "cc"
+
+-- |Repaclaces all occurences of "b" and "B" with B button emojis.
+mockB :: Text -> Text
+mockB = T.replace "b" "🅱️" . T.replace "B" "🅱️"
