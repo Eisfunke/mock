@@ -24,7 +24,8 @@ styles = [
     ("double", T.map toDouble),
     ("cc", mockCC),
     ("b", mockB),
-    ("square", mockSquare)]
+    ("square", mockSquare),
+    ("strike", strikethrough)]
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.
 toUpperBy :: [Bool] -> T.Text -> T.Text
@@ -71,3 +72,9 @@ mockB = T.replace "b" "🅱️" . T.replace "B" "🅱️"
 -- |Makes a square from a string.
 mockSquare :: Text -> Text
 mockSquare text = T.concat [T.intersperse ' ' text, "\n", T.intercalate "\n" (T.chunksOf 1 text)]
+
+-- |Uses Unicode U+0336 to let a text look struck through.
+strikethrough :: Text -> Text
+strikethrough text
+    | text == T.empty = T.empty
+    | otherwise = T.intersperse '\822' text `T.append` "\822"
