@@ -23,7 +23,8 @@ styles = [
     ("lower", T.toLower),
     ("double", T.map toDouble),
     ("cc", mockCC),
-    ("b", mockB)]
+    ("b", mockB),
+    ("square", mockSquare)]
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.
 toUpperBy :: [Bool] -> T.Text -> T.Text
@@ -66,3 +67,7 @@ mockCC = T.replace "k" "cc" . T.replace "ck" "cc"
 -- |Repaclaces all occurences of "b" and "B" with B button emojis.
 mockB :: Text -> Text
 mockB = T.replace "b" "🅱️" . T.replace "B" "🅱️"
+
+-- |Makes a square from a string.
+mockSquare :: Text -> Text
+mockSquare text = T.concat [T.intersperse ' ' text, "\n", T.intercalate "\n" (T.chunksOf 1 text)]
