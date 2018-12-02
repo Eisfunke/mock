@@ -71,7 +71,7 @@ mockB = T.replace "b" "🅱️" . T.replace "B" "🅱️"
 
 -- |Makes a square from a string.
 mockSquare :: Text -> Text
-mockSquare text = T.concat [T.intersperse ' ' text, "\n", T.intercalate "\n" (T.chunksOf 1 text)]
+mockSquare text = T.concat [T.intersperse ' ' text, "\n", T.intercalate "\n" (T.chunksOf 1 $ T.tail text)]
 
 -- |Uses Unicode U+0336 to let a text look struck through.
 strikethrough :: Text -> Text
