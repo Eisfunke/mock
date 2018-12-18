@@ -62,6 +62,7 @@ toDouble c
     | 97 <= ord c && ord c <= 122 = chr $ ord c - 97 + 120146  -- Lowercase letter
 toDouble c = c
 
+-- |Transforms a double-struck letter into its normal variant. If it isn't double-struck, it is left unchanged.
 fromDouble :: Char -> Char
 fromDouble c = case ord c of
     8450 -> 'C'

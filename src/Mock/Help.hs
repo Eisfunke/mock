@@ -5,6 +5,7 @@ module Mock.Help (styleHelp) where
 import qualified Data.Text as T
 import Data.Text (Text)
 
+-- |Returns help string for a given style name (or a fitting message if no help is available).
 styleHelp :: Text -> Text
 styleHelp styleName = case styleName of
     "random" -> "Flips lowercase characters pseudo-randomly into uppercase letters."
