@@ -25,7 +25,8 @@ styles = [
     ("cc", mockCC),
     ("b", mockB),
     ("square", mockSquare),
-    ("strike", strikethrough)]
+    ("strike", strikethrough),
+    ("subsuper", T.map toSubSuper)]
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.
 toUpperBy :: [Bool] -> T.Text -> T.Text
@@ -44,7 +45,7 @@ mockRandom txt = toUpperBy (randoms $ mkStdGen (hash txt)) txt
 
 -- |Letterspaces a String with the given number of blanks between the Chars.
 letterspace :: Int -> T.Text -> T.Text
-letterspace n = T.pack . intercalate (replicate n ' ') . map (\c -> [c]) . T.unpack
+letterspace n = T.pack . intercalate (replicate n ' ') . map (:[]) . T.unpack
 
 -- |Transforms a character into its double-struck variant (if it is alphanumeric, else it is left unchanged).
 toDouble :: Char -> Char
@@ -60,6 +61,14 @@ toDouble c
     | 65 <= ord c && ord c <= 90 =  chr $ ord c - 65 + 120120  -- Uppercase letter
     | 97 <= ord c && ord c <= 122 = chr $ ord c - 97 + 120146  -- Lowercase letter
 toDouble c = c
+
+toSubSuper :: Char -> Char
+toSubSuper c = case lookup c table of
+    Just code -> chr code
+    Nothing
+        | 71 <= ord c && ord c <= 78 -> chr $ ord c - 71 + 7475
+        | otherwise -> c
+    where table = [('A', 7468), ('B', 7470), ('D', 7472), ('E', 7473), ('O', 7484), ('P', 7486), ('R', 7487), ('T', 7488), ('U', 7489), ('V', 11389), ('W', 7490)]
 
 -- |Replaces all occurences of lowercase "ck" and "k" in a string with "cc"s.
 mockCC :: T.Text -> T.Text
