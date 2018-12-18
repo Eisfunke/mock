@@ -31,7 +31,10 @@ handle style = fromMaybe (const help) (lookup style styles) . T.dropWhileEnd isS
 -- |Help string.
 help :: T.Text
 help = T.unlines [
-    " - Mock 3.0.0 - ",
+    " ╔════════════════════╗",
+    " ║     Mock 3.3.0     ║",
+    " ╚════════════════════╝",
+    "",
     "A Great PrOgrAM tO TRANsFoRM TEXt, wRiTten iN HaSKeLL.",
     "By Nicolas Lenz. Free and open source under the WTFPL.",
     "Webpage (source code, issues, pull requests): https://git.eisfunke.com/software/mock",
@@ -40,4 +43,8 @@ help = T.unlines [
     "Help:  mock --help",
     "",
     "Styles: ",
-    T.intercalate "\n" (map (\(name, _) -> T.concat ["  - ", name, ": ", styleHelp name]) styles)]
+    T.intercalate "\n" styleHelps] where
+        styleHelps = map
+            (\(name, _) -> T.concat ["  - ", name, ": ", T.replicate (maxNameLength - T.length name) " " , styleHelp name])
+            styles
+        maxNameLength = maximum . map (T.length . fst) $ styles

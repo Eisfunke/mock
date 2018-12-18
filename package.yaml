@@ -1,5 +1,5 @@
 name:                mock
-version:             3.2.1
+version:             3.3.0
 license:             WTFPL
 git:                 "https://git.eisfunke.com/software/mock"
 author:              "Nicolas Lenz"
