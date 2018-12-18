@@ -4,7 +4,7 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c163d71c387a66e9f2b69128f77418f0edb7d266751fbe7ec2aa40443511d5d0
+-- hash: 72ef52c2162b8348d893d8b683bbf0a315e414192ee8d68cc9bf5dbb8f9c45d4
 
 name:           mock
 version:        3.2.1
@@ -27,6 +27,7 @@ source-repository head
 library
   exposed-modules:
       Mock
+      Mock.Help
   other-modules:
       Paths_mock
   hs-source-dirs:

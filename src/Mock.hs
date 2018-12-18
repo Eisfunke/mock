@@ -15,6 +15,7 @@ styles :: [(Text, Text -> Text)]
 styles = [
     ("random", mockRandom),
     ("alternate", mockAlternate),
+    ("strike", strikethrough),
     ("space", letterspace 1),
     ("space2", letterspace 2),
     ("space3", letterspace 3),
@@ -25,8 +26,7 @@ styles = [
     ("dedouble", T.map fromDouble),
     ("cc", mockCC),
     ("b", mockB),
-    ("square", mockSquare),
-    ("strike", strikethrough)]
+    ("square", mockSquare)]
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.
 toUpperBy :: [Bool] -> T.Text -> T.Text
