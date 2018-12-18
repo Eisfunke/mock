@@ -22,6 +22,7 @@ styles = [
     ("upper", T.toUpper),
     ("lower", T.toLower),
     ("double", T.map toDouble),
+    ("dedouble", T.map fromDouble),
     ("cc", mockCC),
     ("b", mockB),
     ("square", mockSquare),
@@ -60,6 +61,21 @@ toDouble c
     | 65 <= ord c && ord c <= 90 =  chr $ ord c - 65 + 120120  -- Uppercase letter
     | 97 <= ord c && ord c <= 122 = chr $ ord c - 97 + 120146  -- Lowercase letter
 toDouble c = c
+
+fromDouble :: Char -> Char
+fromDouble c = case ord c of
+    8450 -> 'C'
+    8461 -> 'H'
+    8469 -> 'N'
+    8473 -> 'P'
+    8474 -> 'Q'
+    8477 -> 'R'
+    8484 -> 'Z'
+    code
+        | 120792 <= code && code <= 120801 -> chr $ code - 120792 + 48
+        | 120120 <= code && code <= 120145 -> chr $ code - 120120 + 65
+        | 120146 <= code && code <= 120171 -> chr $ code - 120146 + 97
+    code -> chr code
 
 -- |Replaces all occurences of lowercase "ck" and "k" in a string with "cc"s.
 mockCC :: T.Text -> T.Text
