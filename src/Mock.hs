@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, LambdaCase #-}
 
 module Mock (styles, mockAlternate, mockRandom, letterspace, toDouble) where
 
@@ -24,6 +24,7 @@ styles = [
     ("lower", T.toLower),
     ("double", T.map toDouble),
     ("dedouble", T.map fromDouble),
+    ("smallcaps", T.map toSmallCap),
     ("cc", mockCC),
     ("b", mockB),
     ("square", mockSquare)]
@@ -76,6 +77,35 @@ fromDouble c = case ord c of
         | 120120 <= code && code <= 120145 -> chr $ code - 120120 + 65
         | 120146 <= code && code <= 120171 -> chr $ code - 120146 + 97
     code -> chr code
+
+toSmallCap :: Char -> Char
+toSmallCap = \case
+    'a' -> chr 7424
+    'b' -> chr 665
+    'c' -> chr 7428
+    'd' -> chr 7429
+    'e' -> chr 7431
+    'f' -> chr 42800
+    'g' -> chr 610
+    'h' -> chr 668
+    'i' -> chr 618
+    'j' -> chr 7434
+    'k' -> chr 7435
+    'l' -> chr 671
+    'm' -> chr 7437
+    'n' -> chr 628
+    'o' -> chr 7439
+    'p' -> chr 7448
+    'q' -> chr 491
+    'r' -> chr 640
+    's' -> chr 42801
+    't' -> chr 7451
+    'u' -> chr 7452
+    'v' -> chr 7456
+    'w' -> chr 7457
+    'y' -> chr 655
+    'z' -> chr 7458
+    c -> c
 
 -- |Replaces all occurences of lowercase "ck" and "k" in a string with "cc"s.
 mockCC :: T.Text -> T.Text

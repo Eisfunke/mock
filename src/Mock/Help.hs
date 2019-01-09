@@ -17,6 +17,7 @@ styleHelp styleName = case styleName of
     "lower" -> "Turns all characters into lowercase ones."
     "double" -> "Turns characters (latin letters and numbers) into their double-struck variants (𝕖𝕩𝕒𝕞𝕡𝕝𝕖). Also known as blackboard bold."
     "dedouble" -> "Turns double-struck characters (like from the \"double\" style) back into normal ones."
+    "smallcaps" -> "Turns lowercase letters into small capitals."
     "cc" -> "Replaces all occurences of lowercase \"c\", \"ck\" and \"k\" with \"cc\"."
     "b" -> "Replaces all occurences of Bs (lower- and uppercase) with B-button emojis (🅱)."
     "square" -> "Shows the input spaced in the first line and the tail of the input lined afterwards."
