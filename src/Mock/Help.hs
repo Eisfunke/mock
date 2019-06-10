@@ -9,6 +9,7 @@ styleHelp :: Text -> Text
 styleHelp styleName = case styleName of
     "random" -> "Flips lowercase characters pseudo-randomly into uppercase letters."
     "alternate" -> "Flips every second letter into an uppercase one, starting with the second character."
+    "alternate2" -> "Like alternate, but ignores case in the input. Equivalent to lower|alternate."
     "space" -> "Inserts a  s p a c e  between every two characters."
     "space2" -> "Inserts two   s  p  a  c  e  s   between every two characters."
     "space3" -> "Inserts three    s   p   a   c   e   s    between every two characters."

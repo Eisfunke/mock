@@ -15,18 +15,19 @@ styles :: [(Text, Text -> Text)]
 styles = [
     ("random", mockRandom),
     ("alternate", mockAlternate),
+    ("alternate2", mockAlternate . T.toLower),
     ("strike", strikethrough),
+    ("double", T.map toDouble),
+    ("dedouble", T.map fromDouble),
+    ("smallcaps", T.map toSmallCap),
+    ("lower", T.toLower),
+    ("upper", T.toUpper),
+    ("cc", mockCC),
+    ("b", mockB),
     ("space", letterspace 1),
     ("space2", letterspace 2),
     ("space3", letterspace 3),
     ("lines", T.intersperse '\n'),
-    ("upper", T.toUpper),
-    ("lower", T.toLower),
-    ("double", T.map toDouble),
-    ("dedouble", T.map fromDouble),
-    ("smallcaps", T.map toSmallCap),
-    ("cc", mockCC),
-    ("b", mockB),
     ("square", mockSquare)]
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.
@@ -46,7 +47,7 @@ mockRandom txt = toUpperBy (randoms $ mkStdGen (hash txt)) txt
 
 -- |Letterspaces a String with the given number of blanks between the Chars.
 letterspace :: Int -> T.Text -> T.Text
-letterspace n = T.pack . intercalate (replicate n ' ') . map (\c -> [c]) . T.unpack
+letterspace n = T.pack . intercalate (replicate n ' ') . map (:[]) . T.unpack
 
 -- |Transforms a character into its double-struck variant (if it is alphanumeric, else it is left unchanged).
 toDouble :: Char -> Char
@@ -63,6 +64,7 @@ toDouble c
     | 97 <= ord c && ord c <= 122 = chr $ ord c - 97 + 120146  -- Lowercase letter
 toDouble c = c
 
+-- |Transforms double-struck characters back into their normal variant.
 fromDouble :: Char -> Char
 fromDouble c = case ord c of
     8450 -> 'C'
@@ -78,6 +80,7 @@ fromDouble c = case ord c of
         | 120146 <= code && code <= 120171 -> chr $ code - 120146 + 97
     code -> chr code
 
+-- |Transforms lowercase characters into their unicode small capital variant
 toSmallCap :: Char -> Char
 toSmallCap = \case
     'a' -> chr 7424
