@@ -22,6 +22,7 @@ styles = [
     ("smallcaps", T.map toSmallCap),
     ("lower", T.toLower),
     ("upper", T.toUpper),
+    ("cyrillic", T.map toCyrillic),
     ("cc", mockCC),
     ("b", mockB),
     ("space", letterspace 1),
@@ -109,6 +110,31 @@ toSmallCap = \case
     'y' -> chr 655
     'z' -> chr 7458
     c -> c
+
+toCyrillic :: Char -> Char
+toCyrillic = \case
+    'A' -> 'Д'
+    'B' -> 'Б'
+    'E' -> 'З'
+    'N' -> 'И'
+    'O' -> 'Ө'
+    'R' -> 'Я'
+    'U' -> 'Ц'
+    'W' -> 'Щ'
+    'X' -> 'Ж'
+    'a' -> 'д'
+    'b' -> 'в'
+    'e' -> 'ё'
+    'h' -> 'Ђ'
+    'i' -> 'ɪ'
+    'k' -> 'к'
+    'o' -> 'ө'
+    'r' -> 'я'
+    't' -> 'т'
+    'u' -> 'ц'
+    'y' -> 'џ'
+    c -> c
+
 
 -- |Replaces all occurences of lowercase "ck" and "k" in a string with "cc"s.
 mockCC :: T.Text -> T.Text
