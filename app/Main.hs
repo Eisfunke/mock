@@ -32,7 +32,7 @@ handle style = fromMaybe (const help) (lookup style styles) . T.dropWhileEnd isS
 help :: T.Text
 help = T.unlines [
     " ╔════════════════════╗",
-    " ║     Mock 3.3.0     ║",
+    " ║     Mock 3.5.0     ║",
     " ╚════════════════════╝",
     "",
     "A Great PrOgrAM tO TRANsFoRM TEXt, wRiTten iN HaSKeLL.",
