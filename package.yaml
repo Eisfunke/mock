@@ -14,7 +14,7 @@ category:            String
 description:         Please see the README at <https://git.eisfunke.com/software/mock#readme>
 
 dependencies:
-- base >= 4.7 && < 5
+- base
 - random
 - hashable
 - text
