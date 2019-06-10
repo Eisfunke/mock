@@ -134,7 +134,7 @@ toSubSuper sub c = case (sub, c) of
     (_, 'z') -> 'ᶻ'
     (_, c) -> c
 
-    -- |Transforms double-struck characters back into their normal variant.
+-- |Transforms double-struck characters back into their normal variant.
 fromDouble :: Char -> Char
 fromDouble c = case ord c of
     8450 -> 'C'
