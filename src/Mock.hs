@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, LambdaCase #-}
 
 module Mock (styles, mockAlternate, mockRandom, letterspace, toDouble) where
 
@@ -15,18 +15,22 @@ styles :: [(Text, Text -> Text)]
 styles = [
     ("random", mockRandom),
     ("alternate", mockAlternate),
+    ("alternate2", mockAlternate . T.toLower),
+    ("strike", strikethrough),
+    ("double", T.map toDouble),
+    ("dedouble", T.map fromDouble),
+    ("smallcaps", T.map toSmallCap),
+    ("lower", T.toLower),
+    ("upper", T.toUpper),
+    ("cyrillic", T.map toCyrillic),
+    ("subsuper", T.map toSubSuper),
+    ("cc", mockCC),
+    ("b", mockB),
     ("space", letterspace 1),
     ("space2", letterspace 2),
     ("space3", letterspace 3),
     ("lines", T.intersperse '\n'),
-    ("upper", T.toUpper),
-    ("lower", T.toLower),
-    ("double", T.map toDouble),
-    ("cc", mockCC),
-    ("b", mockB),
-    ("square", mockSquare),
-    ("strike", strikethrough),
-    ("subsuper", T.map toSubSuper)]
+    ("square", mockSquare)]
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.
 toUpperBy :: [Bool] -> T.Text -> T.Text
@@ -69,6 +73,76 @@ toSubSuper c = case lookup c table of
         | 71 <= ord c && ord c <= 78 -> chr $ ord c - 71 + 7475
         | otherwise -> c
     where table = [('A', 7468), ('B', 7470), ('D', 7472), ('E', 7473), ('O', 7484), ('P', 7486), ('R', 7487), ('T', 7488), ('U', 7489), ('V', 11389), ('W', 7490)]
+
+    -- |Transforms double-struck characters back into their normal variant.
+fromDouble :: Char -> Char
+fromDouble c = case ord c of
+    8450 -> 'C'
+    8461 -> 'H'
+    8469 -> 'N'
+    8473 -> 'P'
+    8474 -> 'Q'
+    8477 -> 'R'
+    8484 -> 'Z'
+    code
+        | 120792 <= code && code <= 120801 -> chr $ code - 120792 + 48
+        | 120120 <= code && code <= 120145 -> chr $ code - 120120 + 65
+        | 120146 <= code && code <= 120171 -> chr $ code - 120146 + 97
+    code -> chr code
+
+-- |Transforms lowercase characters into their unicode small capital variant
+toSmallCap :: Char -> Char
+toSmallCap = \case
+    'a' -> chr 7424
+    'b' -> chr 665
+    'c' -> chr 7428
+    'd' -> chr 7429
+    'e' -> chr 7431
+    'f' -> chr 42800
+    'g' -> chr 610
+    'h' -> chr 668
+    'i' -> chr 618
+    'j' -> chr 7434
+    'k' -> chr 7435
+    'l' -> chr 671
+    'm' -> chr 7437
+    'n' -> chr 628
+    'o' -> chr 7439
+    'p' -> chr 7448
+    'q' -> chr 491
+    'r' -> chr 640
+    's' -> chr 42801
+    't' -> chr 7451
+    'u' -> chr 7452
+    'v' -> chr 7456
+    'w' -> chr 7457
+    'y' -> chr 655
+    'z' -> chr 7458
+    c -> c
+
+toCyrillic :: Char -> Char
+toCyrillic = \case
+    'A' -> 'Д'
+    'B' -> 'Б'
+    'E' -> 'З'
+    'N' -> 'И'
+    'O' -> 'Ө'
+    'R' -> 'Я'
+    'U' -> 'Ц'
+    'W' -> 'Щ'
+    'X' -> 'Ж'
+    'a' -> 'д'
+    'b' -> 'в'
+    'e' -> 'ё'
+    'h' -> 'Ђ'
+    'i' -> 'ɪ'
+    'k' -> 'к'
+    'o' -> 'ө'
+    'r' -> 'я'
+    't' -> 'т'
+    'u' -> 'ц'
+    'y' -> 'џ'
+    c -> c
 
 -- |Replaces all occurences of lowercase "ck" and "k" in a string with "cc"s.
 mockCC :: T.Text -> T.Text

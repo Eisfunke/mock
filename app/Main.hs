@@ -3,6 +3,7 @@
 module Main where
 
 import Mock (styles)
+import Mock.Help (styleHelp)
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
 import Data.Char
@@ -30,7 +31,20 @@ handle style = fromMaybe (const help) (lookup style styles) . T.dropWhileEnd isS
 -- |Help string.
 help :: T.Text
 help = T.unlines [
-    "Mock 3.0.0 - a program to transform text.",
+    " ╔════════════════════╗",
+    " ║     Mock 3.3.0     ║",
+    " ╚════════════════════╝",
+    "",
+    "A Great PrOgrAM tO TRANsFoRM TEXt, wRiTten iN HaSKeLL.",
+    "By Nicolas Lenz. Free and open source under the WTFPL.",
+    "Webpage (source code, issues, pull requests): https://git.eisfunke.com/software/mock",
     "",
     "Usage: mock [STYLE] [TEXT]",
-    "Styles: " `T.append` (T.intercalate ", " $ map fst styles)]
+    "Help:  mock --help",
+    "",
+    "Styles: ",
+    T.intercalate "\n" styleHelps] where
+        styleHelps = map
+            (\(name, _) -> T.concat ["  - ", name, ": ", T.replicate (maxNameLength - T.length name) " " , styleHelp name])
+            styles
+        maxNameLength = maximum . map (T.length . fst) $ styles
