@@ -6,21 +6,23 @@ There is a **Telegram bot** for Mock available as [@truemockbot](https://t.me/tr
 
 ## Installation
 
+Just clone this repository or download a [release](https://git.eisfunke.com/software/mock/releases) and call
+
 ```
 $> stack setup
 $> stack install
 ```
 
-This will install Mock into `~/.local/bin`, which should be added to `$PATH`.
+inside the folder. This will install Mock into `~/.local/bin`, which should be added to `$PATH`.
 
-There is also an [AUR package](https://aur.archlinux.org/packages/haskell-mock/) available.
+If you're using Arch Linux: there is also an [AUR package](https://aur.archlinux.org/packages/haskell-mock/) available.
 
 
 ## Usage
 
 `mock [STYLE] [TEXT]`
 
-You can get a list of possible mock styles with `mock`.
+You can get help a list of possible mock styles with `mock`.
 
 If no text is given, input is read from `stdin`.
 
@@ -34,7 +36,7 @@ $> mock space This is a great program.
 T h i s   i s   a   g r e a t   p r o g r a m.
 ```
 
-Mock calls can be concatenated with pipes:
+Mock calls can of course be concatenated with pipes:
 
 ```
 $> mock space This is a great program. | mock random
