@@ -17,6 +17,7 @@ styleHelp styleName = case styleName of
     "upper" -> "Turns all characters into UPPERCASE ones."
     "lower" -> "Turns all characters into lowercase ones."
     "cyrillic" -> "Turns the text into a stereotypical fake russian looking variant."
+    "subsuper" -> "Alternatingly put letters into sub- and superscript, where possible."
     "double" -> "Turns characters (latin letters and numbers) into their double-struck variants (𝕖𝕩𝕒𝕞𝕡𝕝𝕖). Also known as blackboard bold."
     "dedouble" -> "Turns double-struck characters (like from the \"double\" style) back into normal ones."
     "smallcaps" -> "Turns lowercase letters into small capitals."

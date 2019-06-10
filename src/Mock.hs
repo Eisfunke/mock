@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings, LambdaCase #-}
 
-module Mock (styles, mockAlternate, mockRandom, letterspace, toDouble) where
+module Mock (styles, mockAlternate, mockRandom, letterspace, toDouble, toSubSuper) where
 
 import qualified Data.Text as T
 import Data.Text (Text)
@@ -23,7 +23,7 @@ styles = [
     ("lower", T.toLower),
     ("upper", T.toUpper),
     ("cyrillic", T.map toCyrillic),
-    ("subsuper", T.map toSubSuper),
+    ("subsuper", mockSubSuper),
     ("cc", mockCC),
     ("b", mockB),
     ("space", letterspace 1),
@@ -66,13 +66,73 @@ toDouble c
     | 97 <= ord c && ord c <= 122 = chr $ ord c - 97 + 120146  -- Lowercase letter
 toDouble c = c
 
-toSubSuper :: Char -> Char
-toSubSuper c = case lookup c table of
-    Just code -> chr code
-    Nothing
-        | 71 <= ord c && ord c <= 78 -> chr $ ord c - 71 + 7475
-        | otherwise -> c
-    where table = [('A', 7468), ('B', 7470), ('D', 7472), ('E', 7473), ('O', 7484), ('P', 7486), ('R', 7487), ('T', 7488), ('U', 7489), ('V', 11389), ('W', 7490)]
+mockSubSuper :: Text -> Text
+mockSubSuper txt = T.pack $ zipWith toSubSuper (intersperse True $ repeat False) (T.unpack txt)
+
+toSubSuper :: Bool -> Char -> Char
+toSubSuper sub c = case (sub, c) of
+    (_, 'A') -> chr 7468
+    (_, 'B') -> chr 7470
+    (_, 'D') -> chr 7472
+    (_, 'E') -> chr 7473
+    (_, 'G') -> chr 7475
+    (_, 'H') -> chr 7476
+    (_, 'I') -> chr 7477
+    (_, 'J') -> chr 7478
+    (_, 'K') -> chr 7479
+    (_, 'L') -> chr 7480
+    (_, 'M') -> chr 7481
+    (_, 'N') -> chr 7482
+    (_, 'O') -> chr 7484
+    (_, 'P') -> chr 7486
+    (_, 'R') -> chr 7487
+    (_, 'T') -> chr 7488
+    (_, 'U') -> chr 7489
+    (_, 'V') -> chr 11389
+    (_, 'W') -> chr 7490
+    (False, 'a') -> 'ᵃ'
+    (True, 'a') -> 'ₐ'
+    (_, 'b') -> 'ᵇ'
+    (_, 'c') -> 'ᶜ'
+    (_, 'd') -> 'ᵈ'
+    (False, 'e') -> 'ᵉ'
+    (True, 'e') -> 'ₑ'
+    (_, 'f') -> 'ᶠ'
+    (_, 'g') -> 'ᵍ'
+    (False, 'h') -> 'ʰ'
+    (True, 'h') -> 'ₕ'
+    (False, 'i') -> 'ⁱ'
+    (True, 'i') -> 'ᵢ'
+    (False, 'j') -> 'ʲ'
+    (True, 'j') -> 'ⱼ'
+    (False, 'k') -> 'ᵏ'
+    (True, 'k') -> 'ₖ'
+    (False, 'l') -> 'ˡ'
+    (True, 'l') -> 'ₗ'
+    (False, 'm') -> 'ᵐ'
+    (True, 'm') -> 'ₘ'
+    (False, 'n') -> 'ⁿ'
+    (True, 'n') -> 'ₙ'
+    (False, 'o') -> 'ᵒ'
+    (True, 'o') -> 'ₒ'
+    (False, 'p') -> 'ᵖ'
+    (True, 'p') -> 'ₚ'
+    (False, 'r') -> 'ʳ'
+    (True, 'r') -> 'ᵣ'
+    (False, 's') -> 'ˢ'
+    (True, 's') -> 'ₛ'
+    (False, 't') -> 'ᵗ'
+    (True, 't') -> 'ₜ'
+    (False, 'u') -> 'ᵘ'
+    (True, 'u') -> 'ᵤ'
+    (False, 'v') -> 'ᵛ'
+    (True, 'v') -> 'ᵥ'
+    (_, 'w') -> 'ʷ'
+    (False, 'x') -> 'ˣ'
+    (True, 'x') -> 'ₓ'
+    (_, 'y') -> 'ʸ'
+    (_, 'z') -> 'ᶻ'
+    (_, c) -> c
 
     -- |Transforms double-struck characters back into their normal variant.
 fromDouble :: Char -> Char
