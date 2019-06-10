@@ -24,7 +24,7 @@ If you're using Arch Linux: there is also an [AUR package](https://aur.archlinux
 
 You can get help a list of possible mock styles with `mock`.
 
-If no text is given, input is read from `stdin`.
+If no text or "-" is given, input is read from `stdin`.
 
 ### Examples
 

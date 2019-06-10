@@ -22,6 +22,9 @@ main = do
         [style] -> do
             input <- T.getContents  -- Read from stdin
             T.putStrLn $ handle style [input]
+        [style, "-"] -> do
+            input <- T.getContents  -- Read from stdin
+            T.putStrLn $ handle style [input]
         (style:str) -> T.putStrLn $ handle style str
 
 -- |Returns an IO action handling the given list of arguments.
