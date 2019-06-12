@@ -40,13 +40,22 @@ toUpperBy bs = T.pack . zipWith f bs . T.unpack where
     f True c = toUpper c
     f False c = c
 
+toUpperBy' :: [Bool] -> String -> String
+toUpperBy' (True:bs) (c:cs)
+    | isUpper c = c : toUpperBy' (not <$> bs) cs
+    | otherwise = toUpper c : toUpperBy' bs cs
+toUpperBy' (False:bs) (c:cs)
+    | isUpper c = c : toUpperBy' (not <$> bs) cs
+    | otherwise = c : toUpperBy' bs cs
+toUpperBy' _ _ = []
+
 -- |Transforms every other of the Chars of a String into uppercase. The other Chars aren't changed.
 mockAlternate :: T.Text -> T.Text
-mockAlternate = toUpperBy $ intersperse True $ repeat False
+mockAlternate = T.pack . toUpperBy' (intersperse True $ repeat False) . T.unpack
 
 -- |Tansforms random (that is, random per input String) Chars of a String into uppercase.
 mockRandom :: T.Text -> T.Text
-mockRandom txt = toUpperBy (randoms $ mkStdGen (hash txt)) txt
+mockRandom txt = T.pack $ toUpperBy' (randoms $ mkStdGen (hash txt)) $ T.unpack txt
 
 -- |Letterspaces a String with the given number of blanks between the Chars.
 letterspace :: Int -> T.Text -> T.Text
