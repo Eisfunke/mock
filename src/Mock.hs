@@ -30,6 +30,7 @@ styles = [
     ("space2", letterspace 2),
     ("space3", letterspace 3),
     ("lines", T.intersperse '\n'),
+    ("wordlines", T.concat . intersperse "\n" . T.words),
     ("square", mockSquare)]
 
 -- |Transforms a String into uppercase where the corresponding list is True. For False the String isn't changed.

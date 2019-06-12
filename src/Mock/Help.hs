@@ -14,6 +14,7 @@ styleHelp styleName = case styleName of
     "space2" -> "Inserts two   s  p  a  c  e  s   between every two characters."
     "space3" -> "Inserts three    s   p   a   c   e   s    between every two characters."
     "lines" -> "Puts each character on a single line."
+    "wordlines" -> "Puts each word on a single line."
     "upper" -> "Turns all characters into UPPERCASE ones."
     "lower" -> "Turns all characters into lowercase ones."
     "cyrillic" -> "Turns the text into a stereotypical fake russian looking variant."
