@@ -1,34 +1,37 @@
-name:                mock
-version:             3.5.0
-license:             WTFPL
-git:                 "https://git.eisfunke.com/software/mock"
-author:              "Nicolas Lenz"
-maintainer:          "nicolas@eisfunke.com"
-copyright:           "2018 Nicolas Lenz"
+name: mock
+version: 3.5.0
+license: WTFPL
+git: https://git.eisfunke.com/software/mock
+author: Nicolas Lenz
+maintainer: nicolas@eisfunke.com
+copyright: 2018-2019 Nicolas Lenz
 
-extra-source-files:
-- README.md
-
-synopsis:            GrEAt HAskeLL PrOGRaM to trANsForm tEXT
-category:            String
-description:         Please see the README at <https://git.eisfunke.com/software/mock#readme>
+synopsis: GrEAt HAskeLL PrOGRaM to trANsForm tEXT
+category: Text
+description: Please see the README at <https://git.eisfunke.com/software/mock#readme>.
 
 dependencies:
-- base
-- random
-- hashable
-- text
+  - base
+  - text
+  - random
+  - hashable
+
+extra-doc-files:
+  - README.md
 
 library:
   source-dirs: src
+  ghc-options:
+    - -Wall
 
 executables:
   mock:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+    source-dirs: app
+    main: main.hs
     dependencies:
-    - mock
+      - mock
+    ghc-options:
+      - -Wall
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N

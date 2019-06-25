@@ -9,8 +9,7 @@ There is a **Telegram bot** for Mock available as [@truemockbot](https://t.me/tr
 Just clone this repository or download a [release](https://git.eisfunke.com/software/mock/releases) and call
 
 ```
-$> stack setup
-$> stack install
+$ stack install
 ```
 
 inside the folder. This will install Mock into `~/.local/bin`, which should be added to `$PATH`.
@@ -29,17 +28,17 @@ If no text or "-" is given, input is read from `stdin`.
 ### Examples
 
 ```
-$> mock random This is a great program.
+$ mock random This is a great program.
 ThIs Is A greaT PROgrAM.
 
-$> mock space This is a great program.
+$ mock space This is a great program.
 T h i s   i s   a   g r e a t   p r o g r a m.
 ```
 
 Mock calls can of course be concatenated with pipes:
 
 ```
-$> mock space This is a great program. | mock random
+$ mock space This is a great program. | mock random
 T h I S   i S   A   G R e A t   P R o g r a m .
 ```
 
