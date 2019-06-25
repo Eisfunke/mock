@@ -25,6 +25,7 @@ styleHelp styleName = case styleName of
     "cc" -> "Replaces all occurences of lowercase \"c\", \"ck\" and \"k\" with \"cc\"."
     "b" -> "Replaces all occurences of Bs (lower- and uppercase) with B-button emojis (🅱)."
     "pray" -> "Puts pray emojis (🙏) between all words."
+    "clap" -> "Puts clap emojis (👏) between all words."
     "square" -> "Shows the input spaced in the first line and the tail of the input lined afterwards."
     "strike" -> "Turns the input into strikethrough using Unicode combinators (e̶x̶a̶m̶p̶l̶e̶)."
     _ -> "No documentation available."

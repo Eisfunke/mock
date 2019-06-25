@@ -27,6 +27,7 @@ styles = [
     ("cc", mockCC),
     ("b", mockB),
     ("pray", T.unwords . intersperse "🙏" . T.words),
+    ("clap", T.unwords . intersperse "👏" . T.words),
     ("space", letterspace 1),
     ("space2", letterspace 2),
     ("space3", letterspace 3),
