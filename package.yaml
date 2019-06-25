@@ -21,6 +21,8 @@ extra-doc-files:
 
 library:
   source-dirs: src
+  ghc-options:
+    - -Wall
 
 executables:
   mock:
@@ -29,7 +31,7 @@ executables:
     dependencies:
       - mock
     ghc-options:
+      - -Wall
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
-      - -Wall
