@@ -11,7 +11,7 @@ import System.Random
 
 -- |Version string
 version :: Text
-version = "3.5.0"
+version = "3.6.0"
 
 -- | List of all mock styles as tuples of the name and the transformation function.
 styles :: [(Text, Text -> Text)]
