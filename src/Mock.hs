@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings, LambdaCase #-}
 
-module Mock (styles, mockAlternate, mockRandom, letterspace, toDouble, toSubSuper) where
+module Mock (version, styles, mockAlternate, mockRandom, letterspace, toDouble, toSubSuper) where
 
 import qualified Data.Text as T
 import Data.Text (Text)
@@ -9,6 +9,9 @@ import Data.List
 import Data.Hashable
 import System.Random
 
+-- |Version string
+version :: T.Text
+version = "3.5.0"
 
 -- |List of possible mock style names and their functions.
 styles :: [(Text, Text -> Text)]

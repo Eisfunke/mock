@@ -10,7 +10,6 @@ import Data.Char
 import Data.Maybe
 import System.Environment
 
-
 -- |Main function.
 main :: IO ()
 main = do
@@ -35,7 +34,7 @@ handle style = fromMaybe (const help) (lookup style styles) . T.dropWhileEnd isS
 help :: T.Text
 help = T.unlines [
     " ╔════════════════════╗",
-    " ║     Mock 3.5.0     ║",
+    " ║     Mock " <> version <> "     ║",
     " ╚════════════════════╝",
     "",
     "A Great PrOgrAM tO TRANsFoRM TEXt, wRiTten iN HaSKeLL.",
