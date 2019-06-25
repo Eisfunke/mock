@@ -1,8 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Mock.Help (styleHelp) where
+module Text.Mock.Help (styleHelp) where
 
-import qualified Data.Text as T
 import Data.Text (Text)
 
 styleHelp :: Text -> Text

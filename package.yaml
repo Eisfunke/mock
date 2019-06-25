@@ -7,7 +7,7 @@ maintainer: nicolas@eisfunke.com
 copyright: 2018-2019 Nicolas Lenz
 
 synopsis: GrEAt HAskeLL PrOGRaM to trANsForm tEXT
-category: String
+category: Text
 description: Please see the README at <https://git.eisfunke.com/software/mock#readme>.
 
 dependencies:
@@ -24,8 +24,8 @@ library:
 
 executables:
   mock:
-    main: Main.hs
     source-dirs: app
+    main: main.hs
     dependencies:
       - mock
     ghc-options:

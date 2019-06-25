@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings, LambdaCase #-}
 
-module Mock (version, styles, mockAlternate, mockRandom, letterspace, toDouble, toSubSuper) where
+module Text.Mock (version, styles, mockAlternate, mockRandom, letterspace, toDouble, toSubSuper) where
 
 import qualified Data.Text as T
 import Data.Text (Text)

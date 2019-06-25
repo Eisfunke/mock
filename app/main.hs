@@ -1,9 +1,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Main where
-
-import Mock
-import Mock.Help (styleHelp)
+import Text.Mock
+import Text.Mock.Help (styleHelp)
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
 import Data.Char
