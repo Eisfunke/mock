@@ -2,7 +2,7 @@
 
 ![wAR miR jEtzT Zu anSTRENgEnd dA JedeN ZWEiten BUChSTaBeN GRoSS zU scHREiBen](mock.png)
 
-There is a **Telegram bot** for Mock available as [@truemockbot](https://t.me/truemockbot), you can find its source code in the [repository](https://git.eisfunke.com/software/mock-telegram-bot).
+There is a **Telegram bot** for Mock available as [\@truemockbot](https://t.me/truemockbot), you can find its source code in the [repository](https://git.eisfunke.com/software/mock-telegram-bot).
 
 ## Installation
 
