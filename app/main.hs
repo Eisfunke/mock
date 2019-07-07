@@ -1,15 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Main where
-
-import Mock (styles)
-import Mock.Help (styleHelp)
+import Text.Mock
+import Text.Mock.Help
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
 import Data.Char
 import Data.Maybe
 import System.Environment
-
 
 -- |Main function.
 main :: IO ()
@@ -22,6 +19,9 @@ main = do
         [style] -> do
             input <- T.getContents  -- Read from stdin
             T.putStrLn $ handle style [input]
+        [style, "-"] -> do
+            input <- T.getContents  -- Read from stdin
+            T.putStrLn $ handle style [input]
         (style:str) -> T.putStrLn $ handle style str
 
 -- |Returns an IO action handling the given list of arguments.
@@ -32,7 +32,7 @@ handle style = fromMaybe (const help) (lookup style styles) . T.dropWhileEnd isS
 help :: T.Text
 help = T.unlines [
     " ╔════════════════════╗",
-    " ║     Mock 3.3.0     ║",
+    " ║     Mock " <> version <> "     ║",
     " ╚════════════════════╝",
     "",
     "A Great PrOgrAM tO TRANsFoRM TEXt, wRiTten iN HaSKeLL.",
