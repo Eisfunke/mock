@@ -1,0 +1,10 @@
+image: fpco/stack-build:lts-14.7
+
+cache:
+  paths:
+    - .stack-work
+
+build:
+  stage: build
+  script:
+    - stack build
