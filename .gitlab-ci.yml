@@ -12,3 +12,7 @@ build:
   stage: build
   script:
     - stack build
+    - cp $(stack path --dist-dir)/build/mock/mock .
+  artifacts:
+    paths:
+      - mock
