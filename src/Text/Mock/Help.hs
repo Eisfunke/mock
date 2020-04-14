@@ -17,6 +17,7 @@ styleHelp = \case
     "lower" -> "Turns all characters into lowercase ones."
     "upper" -> "Turns all characters into UPPERCASE ones."
     "cyrillic" -> "Turns the text into a stereotypical fake russian looking variant."
+    "fraktur" -> "Turns the input into 𝔉𝔯𝔞𝔨𝔱𝔲𝔯𝔰𝔠𝔥𝔯𝔦𝔣𝔱."
     "subsuper" -> "Alternatingly put letters into sub- and superscript, where possible."
     "cc" -> "Replaces all occurences of lowercase \"c\", \"ck\" and \"k\" with \"cc\"."
     "b" -> "Replaces all occurences of Bs (lower- and uppercase) with B-button emojis (🅱)."

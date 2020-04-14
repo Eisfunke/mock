@@ -15,28 +15,30 @@ version = "3.6.0"
 
 -- | List of all mock styles as tuples of the name and the transformation function.
 styles :: [(Text, Text -> Text)]
-styles = [
-    ("random", mockRandom),
-    ("alternate", mockAlternate),
-    ("alternate2", mockAlternate . T.toLower),
-    ("strike", strikethrough),
-    ("double", T.map toDouble),
-    ("dedouble", T.map fromDouble),
-    ("smallcaps", T.map toSmallCap),
-    ("lower", T.toLower),
-    ("upper", T.toUpper),
-    ("cyrillic", T.map toCyrillic),
-    ("subsuper", mockSubSuper),
-    ("cc", mockCC),
-    ("b", mockB),
-    ("pray", T.unwords . intersperse "🙏" . T.words),
-    ("clap", T.unwords . intersperse "👏" . T.words),
-    ("space", letterspace 1),
-    ("space2", letterspace 2),
-    ("space3", letterspace 3),
-    ("lines", T.intersperse '\n'),
-    ("wordlines", T.concat . intersperse "\n" . T.words),
-    ("square", mockSquare)]
+styles =
+    [ ("random", mockRandom)
+    , ("alternate", mockAlternate)
+    , ("alternate2", mockAlternate . T.toLower)
+    , ("strike", mockStrike)
+    , ("double", T.map toDouble)
+    , ("dedouble", T.map fromDouble)
+    , ("smallcaps", T.map toSmallCap)
+    , ("lower", T.toLower)
+    , ("upper", T.toUpper)
+    , ("cyrillic", T.map toCyrillic)
+    , ("fraktur", T.map toFraktur)
+    , ("subsuper", mockSubSuper)
+    , ("cc", mockCC)
+    , ("b", mockB)
+    , ("pray", T.unwords . intersperse "🙏" . T.words)
+    , ("clap", T.unwords . intersperse "👏" . T.words)
+    , ("space", mockSpace 1)
+    , ("space2", mockSpace 2)
+    , ("space3", mockSpace 3)
+    , ("lines", T.intersperse '\n')
+    , ("wordlines", T.concat . intersperse "\n" . T.words)
+    , ("square", mockSquare)
+    ]
 
 -- | Transforms characters of a string into uppercase where the corresponding element of the bool list is true. On encountering a letter that already is uppercase the mask is reversed.
 toUpperBy :: [Bool] -> Text -> Text
@@ -58,8 +60,8 @@ mockRandom :: Text -> Text
 mockRandom txt = toUpperBy (randoms $ mkStdGen (hash txt)) txt
 
 -- | Letterspaces a String with the given number of blanks between each character.
-letterspace :: Int -> Text -> Text
-letterspace n = T.pack . intercalate (replicate n ' ') . map (:[]) . T.unpack
+mockSpace :: Int -> Text -> Text
+mockSpace n = T.pack . intercalate (replicate n ' ') . map (:[]) . T.unpack
 
 -- | Transforms characters into their double-struck variant if available.
 toDouble :: Char -> Char
@@ -230,7 +232,19 @@ mockSquare :: Text -> Text
 mockSquare text = T.concat [T.intersperse ' ' text, "\n", T.intercalate "\n" (T.chunksOf 1 $ T.tail text)]
 
 -- | Uses unicode U+0336 to let a text look struck through.
-strikethrough :: Text -> Text
-strikethrough text
+mockStrike :: Text -> Text
+mockStrike text
     | text == T.empty = T.empty
     | otherwise = T.intersperse '\822' text `T.append` "\822"
+
+toFraktur :: Char -> Char
+toFraktur = \case  -- special cases with letter code out of order
+    'C' -> 'ℭ'
+    'H' -> 'ℌ'
+    'I' -> 'ℑ'
+    'R' -> 'ℜ'
+    'Z' -> 'ℨ'
+    c
+        | 65 <= ord c && ord c <= 90  -> chr $ 120068 + (ord c - 65)  -- upper case letters
+        | 97 <= ord c && ord c <= 122 -> chr $ 120094 + (ord c - 97)  -- lower case letters
+        | otherwise -> c
