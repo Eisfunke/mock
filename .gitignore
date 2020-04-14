@@ -1,5 +1,4 @@
 # ---> Haskell
-mock.cabal
 dist
 dist-*
 cabal-dev
