@@ -1,13 +1,13 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.34.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 18462e43afa7cf20d656c32d0530ead1fe1bff96000ef7628d9d6c1967c9f98a
+-- hash: 4ec60b8f64a7ff634d1070114f1f2575f24b91bb96e0c2898d2805299f27ce39
 
 name:           mock
-version:        3.7.0
+version:        3.7.1
 synopsis:       GrEAt HAskeLL PrOGRaM to trANsForm tEXT
 description:    Please see the README at <https://git.eisfunke.com/software/mock>.
 category:       Text
