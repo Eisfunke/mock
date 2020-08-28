@@ -26,7 +26,7 @@ styles =
     , ("lower", T.toLower)
     , ("upper", T.toUpper)
     , ("cyrillic", T.map toCyrillic)
-    , ("fraktur", T.map toFraktur)
+    , ("fraktur", T.concatMap toFraktur)
     , ("subsuper", mockSubSuper)
     , ("cc", mockCC)
     , ("b", mockB)
@@ -237,14 +237,22 @@ mockStrike text
     | text == T.empty = T.empty
     | otherwise = T.intersperse '\822' text `T.append` "\822"
 
-toFraktur :: Char -> Char
+toFraktur :: Char -> Text
 toFraktur = \case  -- special cases with letter code out of order
-    'C' -> 'ℭ'
-    'H' -> 'ℌ'
-    'I' -> 'ℑ'
-    'R' -> 'ℜ'
-    'Z' -> 'ℨ'
+    'C' -> "ℭ"
+    'H' -> "ℌ"
+    'I' -> "ℑ"
+    'R' -> "ℜ"
+    'Z' -> "ℨ"
+    'ß' -> "ſ𝔰"
+    'ẞ' -> "𝔖𝔖"
+    'ö' -> "𝔬𝔢"
+    'Ö' -> "𝔒𝔢"
+    'ä' -> "𝔞𝔢"
+    'Ä' -> "𝔄𝔢"
+    'ü' -> "𝔲𝔢"
+    'Ü' -> "𝔘𝔢"
     c
-        | 65 <= ord c && ord c <= 90  -> chr $ 120068 + (ord c - 65)  -- upper case letters
-        | 97 <= ord c && ord c <= 122 -> chr $ 120094 + (ord c - 97)  -- lower case letters
-        | otherwise -> c
+        | 65 <= ord c && ord c <= 90  -> T.singleton $ chr $ 120068 + (ord c - 65)  -- upper case letters
+        | 97 <= ord c && ord c <= 122 -> T.singleton $ chr $ 120094 + (ord c - 97)  -- lower case letters
+        | otherwise -> T.singleton c
