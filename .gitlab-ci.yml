@@ -1,4 +1,4 @@
-image: fpco/stack-build:lts-15
+image: fpco/stack-build:lts-16
 
 variables:
   STACK_ROOT: "${CI_PROJECT_DIR}/.stack"
