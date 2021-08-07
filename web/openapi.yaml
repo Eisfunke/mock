@@ -1,0 +1,49 @@
+openapi: "3.0.3"
+
+info:
+  title: MockAPI
+  description: An API for using Mock as a service.
+  contact:
+    name: Nicolas Lenz
+    url: https://www.eisfunke.com
+    email: nicolas@eisfunke.com
+  license:
+    name: WTFPL
+    url: http://www.wtfpl.net/txt/copying/
+  version: "0.0.0"
+
+externalDocs:
+  description: More info about Mock
+  url: https://git.eisfunke.com/software/mock
+
+servers:
+  - url: https://mock.eisfunke.com
+    description: API server
+
+paths:
+  /mock:
+    get:
+      summary: Mock a text
+      description: Apply various mockings to any text that your heart might desire.
+      parameters:
+        - name: styles
+          in: query
+          description: The mock styles that shall be applied.
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: text
+          in: query
+          description: The text which shall be mercilessly mocked.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: The mocked text.
+          content:
+            application/json:
+              schema:
+                type: string
