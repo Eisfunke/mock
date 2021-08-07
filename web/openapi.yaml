@@ -18,7 +18,6 @@ externalDocs:
 
 servers:
   - url: https://mock.eisfunke.com
-    description: API server
 
 paths:
   /mock:
@@ -28,8 +27,7 @@ paths:
       parameters:
         - name: styles
           in: query
-          description: The mock styles that shall be applied.
-          required: true
+          description: The mock styles that shall be applied. See [here](https://git.eisfunke.com/software/mock/-/blob/master/src/Text/Mock/Help.hs) for a list of styles.
           schema:
             type: array
             items:
@@ -37,13 +35,13 @@ paths:
         - name: text
           in: query
           description: The text which shall be mercilessly mocked.
-          required: true
           schema:
             type: string
       responses:
         200:
           description: The mocked text.
           content:
-            application/json:
+            text/plain:
               schema:
+                example: ExAmPlE
                 type: string

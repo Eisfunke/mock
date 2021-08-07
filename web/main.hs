@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings, QuasiQuotes, TemplateHaskell, TypeFamilies, LambdaCase, ViewPatterns #-}
 
-import Text.Mock
+import qualified Text.Mock as Mock
 import Data.Maybe (fromMaybe)
 import qualified Data.Text as T
 import Yesod
@@ -9,14 +9,15 @@ data Mock = Mock
 instance Yesod Mock
 
 mkYesod "Mock" [parseRoutes|
-    /#T.Text MockR GET
+    /mock MockR GET
 |]
 
-
-getMockR :: T.Text -> Handler T.Text
-getMockR style = do
+getMockR :: Handler T.Text
+getMockR = do
+    stylesText <- lookupGetParams "styles"
+    let styles = fmap (\txt -> fromMaybe id (lookup txt Mock.styles)) stylesText
     lookupGetParam "text" >>= \case
-        Just text -> return $ (fromMaybe (const "") (lookup style styles)) text
+        Just text -> return $ foldr (flip (.)) id styles text
         Nothing -> return ""
 
 main :: IO ()
