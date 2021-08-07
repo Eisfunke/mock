@@ -35,3 +35,14 @@ executables:
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
+  mock-web:
+    source-dirs: web
+    main: main.hs
+    dependencies:
+      - mock
+      - yesod
+    ghc-options:
+      - -Wall
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N

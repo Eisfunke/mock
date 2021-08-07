@@ -1,10 +1,10 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.34.2.
+-- This file has been generated from package.yaml by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4ec60b8f64a7ff634d1070114f1f2575f24b91bb96e0c2898d2805299f27ce39
+-- hash: c1340df98a72faeaf3231c852c3d9600a32954b8f79e7ce6f39fc5325afd1423
 
 name:           mock
 version:        3.7.1
@@ -53,4 +53,20 @@ executable mock
     , mock
     , random
     , text
+  default-language: Haskell2010
+
+executable mock-web
+  main-is: main.hs
+  other-modules:
+      Paths_mock
+  hs-source-dirs:
+      web
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base
+    , hashable
+    , mock
+    , random
+    , text
+    , yesod
   default-language: Haskell2010

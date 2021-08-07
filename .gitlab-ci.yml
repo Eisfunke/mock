@@ -1,7 +1,9 @@
-image: fpco/stack-build:lts-16
-
 variables:
   STACK_ROOT: "${CI_PROJECT_DIR}/.stack"
+
+stages:
+  - build
+  - build-image
 
 cache:
   paths:
@@ -9,10 +11,31 @@ cache:
     - .stack
 
 build:
+  image: fpco/stack-build
   stage: build
   script:
     - stack build
-    - cp $(stack path --dist-dir)/build/mock/mock .
+    - cp $(stack path --local-install-root)/bin/mock .
+    - cp $(stack path --local-install-root)/bin/mock-web .
   artifacts:
     paths:
       - mock
+      - mock-web
+  cache:
+    paths:
+      - .stack-work
+      - .stack
+
+build-image:
+  stage: build-image
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR
+      --dockerfile $CI_PROJECT_DIR/Dockerfile
+      --destination $CI_REGISTRY_IMAGE:latest
+      --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  only:
+    - master
