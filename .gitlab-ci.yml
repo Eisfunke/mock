@@ -1,18 +1,9 @@
 variables:
   STACK_ROOT: "${CI_PROJECT_DIR}/.stack"
 
-stages:
-  - build
-  - build-image
-
-cache:
-  paths:
-    - .stack-work
-    - .stack
-
 build:
-  image: fpco/stack-build
   stage: build
+  image: fpco/stack-build
   script:
     - stack build
     - cp $(stack path --local-install-root)/bin/mock .
@@ -26,8 +17,10 @@ build:
       - .stack-work
       - .stack
 
-build-image:
-  stage: build-image
+docker:
+  stage: deploy
+  dependencies:
+    - build
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
@@ -37,5 +30,20 @@ build-image:
       --dockerfile $CI_PROJECT_DIR/Dockerfile
       --destination $CI_REGISTRY_IMAGE:latest
       --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+  only:
+    - master
+
+pages:
+  stage: deploy
+  dependencies: []
+  image: node:alpine
+  script:
+    - npm install swagger-ui-dist
+    - cp -r node_modules/swagger-ui-dist public
+    - cp web/openapi.yaml public
+    - sed -i "s#https://petstore\.swagger\.io/v2/swagger\.json#openapi.yaml#g" public/index.html
+  artifacts:
+    paths:
+      - public
   only:
     - master
