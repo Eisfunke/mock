@@ -9,7 +9,7 @@ data Mock = Mock
 instance Yesod Mock
 
 mkYesod "Mock" [parseRoutes|
-    /mock MockR GET
+    /api/mock MockR GET
 |]
 
 getMockR :: Handler T.Text

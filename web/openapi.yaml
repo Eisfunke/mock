@@ -17,7 +17,7 @@ externalDocs:
   url: https://git.eisfunke.com/software/mock
 
 servers:
-  - url: https://mock.eisfunke.com
+  - url: https://mock.eisfunke.com/api
 
 paths:
   /mock:
