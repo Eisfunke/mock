@@ -4,7 +4,7 @@ cabal-version: 2.2
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c1340df98a72faeaf3231c852c3d9600a32954b8f79e7ce6f39fc5325afd1423
+-- hash: d941a20407aef05b79ed6740463010a91a3712c58e498be3fba380caba33777f
 
 name:           mock
 version:        3.7.1
@@ -68,5 +68,7 @@ executable mock-web
     , mock
     , random
     , text
-    , yesod
+    , wai-extra
+    , warp
+    , yesod-core
   default-language: Haskell2010

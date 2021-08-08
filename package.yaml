@@ -40,7 +40,9 @@ executables:
     main: main.hs
     dependencies:
       - mock
-      - yesod
+      - yesod-core
+      - warp
+      - wai-extra
     ghc-options:
       - -Wall
       - -threaded
