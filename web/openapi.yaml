@@ -10,7 +10,7 @@ info:
   license:
     name: WTFPL
     url: http://www.wtfpl.net/txt/copying/
-  version: "0.0.0"
+  version: "1.0.0"
 
 externalDocs:
   description: More info about Mock
