@@ -8,11 +8,12 @@ import Network.Wai.Middleware.AddHeaders (addHeaders)
 import Network.Wai.Handler.Warp (run)
 
 data Mock = Mock
-instance Yesod Mock
 
 mkYesod "Mock" [parseRoutes|
     /api/mock MockR GET
 |]
+
+instance Yesod Mock
 
 getMockR :: Handler T.Text
 getMockR = do
