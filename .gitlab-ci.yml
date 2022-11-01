@@ -3,7 +3,7 @@ variables:
 
 build:
   stage: build
-  image: fpco/stack-build:19.31
+  image: fpco/stack-build:lts-19.31
   script:
     - stack build
     - cp $(stack path --local-install-root)/bin/mock .
