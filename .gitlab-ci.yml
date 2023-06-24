@@ -19,7 +19,7 @@ pages:
     - npm install swagger-ui-dist
     - cp -r node_modules/swagger-ui-dist public
     - cp web/openapi.yaml public
-    - sed -i "s#https://petstore\.swagger\.io/v2/swagger\.json#openapi.yaml#g" public/index.html
+    - sed -i "s#https://petstore\.swagger\.io/v2/swagger\.json#openapi.yaml#g" public/swagger-initializer.js
   artifacts:
     paths:
       - public
