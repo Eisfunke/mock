@@ -2,19 +2,25 @@
 
 ![wAR miR jEtzT Zu anSTRENgEnd dA JedeN ZWEiten BUChSTaBeN GRoSS zU scHREiBen](mock.png)
 
-There is a **Telegram bot** for Mock available as [\@truemockbot](https://t.me/truemockbot), you can find its source code in the [repository](https://git.eisfunke.com/software/mock-bot-telegram).
+Mock is A GrEAt HAskeLL PrOGRaM to trANsForm tEXT. It comes as command line application and also offers an HTTP API for your remote mocking needs. I have a public instance running you can use. Take a look at the [API spec](https://software.pages.eisfunke.com/mock/index.html)!
+
 
 ## Installation
 
-Just clone this repository or download a [release](https://git.eisfunke.com/software/mock/releases) and call
+Mock is built using Nix, so you'll need to have a working Nix setup with flakes enabled. If you do, you can run mock by simply calling:
+
+```shell
+$ nix run git+https://git.eisfunke.com/software/mock -- --help
+$ nix run git+https://git.eisfunke.com/software/mock#mock-web -- --help  # for the API
+```
+
+To build the binaries, just clone this repository or download a [release](https://git.eisfunke.com/software/mock/releases) and call:
 
 ```
-$ stack install
+$ nix build
 ```
 
-inside the folder. This will install Mock into `~/.local/bin`, which should be added to `$PATH`.
-
-If you're using Arch Linux: there is also an [AUR package](https://aur.archlinux.org/packages/haskell-mock/) available.
+This will link the build result, you can find the binaries in `result/bin`.
 
 
 ## Usage
@@ -42,5 +48,7 @@ $ mock space This is a great program. | mock random
 T h I S   i S   A   G R e A t   P R o g r a m .
 ```
 
+
+## License
 
 [![WTFPL-Badge](wtfpl.png)](http://www.wtfpl.net)
