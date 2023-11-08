@@ -6,6 +6,8 @@ import qualified Data.Text as T
 import Yesod.Core
 import Network.Wai.Middleware.AddHeaders (addHeaders)
 import Network.Wai.Handler.Warp (run)
+import Text.Read (readMaybe)
+import System.Environment (lookupEnv)
 
 data Mock = Mock
 
@@ -27,4 +29,5 @@ getMockR = do
 main :: IO ()
 main = do
     app <- toWaiApp Mock
-    run 8080 $ addHeaders [("Access-Control-Allow-Origin", "*")] app
+    port <- (>>= readMaybe) <$> lookupEnv "MOCK_WEB_PORT"
+    run (fromMaybe 8080 port) $ addHeaders [("Access-Control-Allow-Origin", "*")] app

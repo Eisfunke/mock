@@ -32,5 +32,6 @@
         };
       };
     };
+    flake.nixosModules.web = import ./nixos-module.nix inputs.self;
   };
 }
