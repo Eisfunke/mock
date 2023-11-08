@@ -8,7 +8,7 @@ self:
     package = lib.mkOption {
       description = "The mock package to use.";
       type = lib.types.package;
-      default = self.packages.${pkgs.hostPlatform.system}.mock;
+      default = self.packages.${pkgs.hostPlatform.system}.default;
     };
     port = lib.mkOption {
       description = "The port to use.";
